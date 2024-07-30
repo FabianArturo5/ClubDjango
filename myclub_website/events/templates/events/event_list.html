@@ -6,6 +6,7 @@
     <br>
     
 {% for event in event_list %}
+
 <div class="card">
     <div class="card-header">
         {{ event }}
@@ -15,20 +16,25 @@
       <p class="card-text">
         <ul>
 
-           <strong>Date: </strong>{{ event.event_date }}<br>
-        
-            <strong>Venue Website:</strong> {{ event.venue.web}}<br>
-            <strong>Manager:</strong> {{ event.manager}}<br>
-            <strong>Description:</strong> {{ event.description}}<br>
-            <strong>Attendees:</strong>
+           <li>Date: {{ event.event_date }}</li>
+            <li>Venue Website: {{ event.venue.web}}</li> 
+            <li>Manager: {{ event.manager}}</li> 
+            <li>Description: </li> {{ event.description}}
+            <li>Attendees: <br>
             {% for user in event.attendees.all %}
-        <br>{{ user }}
+        {{ user }} <br>
         {% endfor %}    
         </li>
-    </ul>
+      </ul>
 
       </p>
   </div>
+  <div class="card-footer text-muted">
+    <a href="{% url 'update-event' event.id %}" class="btn btn-outline-secondary btn-sm">Update Event</a>
+  </div>
+</div>
+
+<br><br>
 {% endfor %}
 
 {% endblock %}

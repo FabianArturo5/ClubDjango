@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 from .models import Event, Venue
 from .forms import VenueForm, EventForm
 
+
 #Function to add events
 def add_event(request):
     submitted = False
@@ -19,6 +20,17 @@ def add_event(request):
         if 'submitted' in request.GET:
             submitted=True
     return render(request, 'events/add_event.html', {'form':form, 'submitted':submitted})
+
+#Function to update an event, it gets the data and you can change with the EventForm
+def update_event(request, event_id):
+    event = Event.objects.get(pk=event_id)
+    #Instace uses to get all the data from the db
+    form = EventForm(request.POST or None, instance=event)
+    if form.is_valid():
+        form.save()
+        return redirect('list-events')
+    return render(request, 'events/update_event.html', {'event':event,
+                                                        'form':form})
 
 #Function to update a venue, it gets the data and you can change with the VenueForm
 def update_venue(request, venue_id):
