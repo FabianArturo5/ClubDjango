@@ -152,12 +152,13 @@ def show_venue(request, venue_id):
 def list_venues(request):
     venue_list = Venue.objects.all()
     #Set up Pagination
-    p = Paginator(Venue.objects.all(), 2)#How many show per page
+    p = Paginator(Venue.objects.all(), 1)#How many show per page
     page = request.GET.get('page')
     venues = p.get_page(page)
-
+    nums = "a" * venues.paginator.num_pages #Counter to know how many pages are
     return render(request, 'events/venue.html', {'venue_list':venue_list,
-                                                 'venues':venues})
+                                                 'venues':venues,
+                                                 'nums':nums})
 
 def add_venue(request):
     submitted = False
