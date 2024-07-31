@@ -155,7 +155,7 @@ def list_venues(request):
     p = Paginator(Venue.objects.all(), 1)#How many show per page
     page = request.GET.get('page')
     venues = p.get_page(page)
-    nums = "a" * venues.paginator.num_pages #Counter to know how many pages are
+    nums = "a" * venues.paginator.num_pages #Counter to know how many pages are 
     return render(request, 'events/venue.html', {'venue_list':venue_list,
                                                  'venues':venues,
                                                  'nums':nums})
