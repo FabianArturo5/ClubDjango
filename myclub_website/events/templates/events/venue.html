@@ -31,7 +31,7 @@ Number of Pages: {{ venues.paginator.num_pages }} <br>
 
 Page {{ venues.number }} of {{ venues.paginator.num_pages }}
 {% if venues.has_next %}
-    <a href="?page={{ venues.next_page_number }}">next</a>
+    <a href="?page={{ venues.next_page_number }}">Next</a>
     <a href="?page={{ venues.paginator.num_pages }}"> Last &raquo</a>
 {% endif %}
 
