@@ -1,7 +1,7 @@
 {% extends 'events/base.html' %}
 
 {% block content %}
-
+{% if user.is_authenticated %}
 <h1>Add Event</h1>
 <br><br>
 <br><br>
@@ -21,4 +21,8 @@
 
 {% endif %}
 
+{% else %}
+<h1>Sorry you must be logged in to view this page...</h1>
+<a href="{% url 'login' %}">Login Here!</a>
+{% endif %}
 {% endblock %}
